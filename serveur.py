@@ -10,18 +10,14 @@ print("Le serveur écoute à présent sur le port {}".format(port))
 
 connexion_avec_client, infos_connexion = connexion_principale.accept()
 
-# réception de la première valeur
+# Réception des valeurs et décodage
 
 valeur1 = connexion_avec_client.recv(1).decode()
-
-# réception de la deuxième valeur
-
 valeur2 = connexion_avec_client.recv(1).decode()
-
-# réception de la troisième valeur
-
 valeur3 = connexion_avec_client.recv(1).decode()
 
+
+# Début de la calculatrice
 # Addition
 
 if valeur3 == "+":
