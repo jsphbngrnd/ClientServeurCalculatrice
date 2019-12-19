@@ -10,38 +10,46 @@ print("Le serveur écoute à présent sur le port {}".format(port))
 
 connexion_avec_client, infos_connexion = connexion_principale.accept()
 
-valeur1 = connexion_avec_client.recv(1)  # réception de la première valeur
-valeur2 = connexion_avec_client.recv(1)  # réception de la deuxième valeur
-valeur3 = connexion_avec_client.recv(1)  # réception de la troisième valeur
+# réception de la première valeur
+
+valeur1 = connexion_avec_client.recv(1).decode()
+
+# réception de la deuxième valeur
+
+valeur2 = connexion_avec_client.recv(1).decode()
+
+# réception de la troisième valeur
+
+valeur3 = connexion_avec_client.recv(1).decode()
 
 # Addition
 
 if valeur3 == "+":
-    resultadd = valeur1 + valeur2
-    print(resultadd)
+    connexion_avec_client.send(str(int(valeur1) + int(valeur2)).encode())
+
 
 # Soustraction
 
 elif valeur3 == "-":
-    resultsub = valeur1 - valeur2
-    print(resultsub)
+    connexion_avec_client.send(str(int(valeur1) - int(valeur2)).encode())
+
 
 # Multiplication
 
 elif valeur3 == "*":
-    resultmult = valeur1 * valeur2
-    print(resultmult)
+    connexion_avec_client.send(str(int(valeur1) * int(valeur2)).encode())
+
 
 # Division
 
 elif valeur3 == "/":
-    resultdiv = valeur1 / valeur2
-    print(resultdiv)
+    connexion_avec_client.send(str(int(valeur1) / int(valeur2)).encode())
+
 
 # Autre entrée
 
 else:
-    print("Invalide")
+    connexion_avec_client.send("Invalide").encode()
 
 print("Fermeture de la connexion")
 connexion_avec_client.close()
