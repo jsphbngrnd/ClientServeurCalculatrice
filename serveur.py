@@ -11,6 +11,36 @@ print("Le serveur écoute à présent sur le port {}".format(port))
 connexion_avec_client, infos_connexion = connexion_principale.accept()
 
 msg_recu = b""
+
+# Addition
+
+if select == "1":
+    resultadd = A + B
+    connexion_avec_client.send(resultadd)
+
+# Soustraction
+
+elif select == "2":
+    resultsub = A - B
+    connexion_avec_client.send(resultsub)
+
+# Multiplication
+
+elif select == "3":
+    resultmult = A * B
+    connexion_avec_client.send(resultmult)
+
+# Division
+
+elif select == "4":
+    resultdiv = A / B
+    connexion_avec_client.send(resultdiv)
+
+# Autre entrée
+
+else:
+    connexion_avec_client.send("Invalide")
+
 while msg_recu != b"fin":
     msg_recu = connexion_avec_client.recv(1024)
     # L'instruction ci-dessous peut lever une exception si le message
