@@ -15,5 +15,7 @@ connexion_avec_serveur.send(valeur1)
 connexion_avec_serveur.send(valeur2)
 connexion_avec_serveur.send(valeur3)
 
+print(connexion_avec_serveur.recv(1).decode())
+
 print("Fermeture de la connexion")
 connexion_avec_serveur.close()
